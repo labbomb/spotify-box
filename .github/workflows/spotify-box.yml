@@ -2,7 +2,7 @@ name: spotify-box
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'  # Runs at 00:00 UTC every day
+    - cron: '0 */3 * * *'  # Runs at 00:00 UTC every day
   push:
     branches: main
 jobs:
