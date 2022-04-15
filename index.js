@@ -41,7 +41,7 @@ async function updateTopTracks(json) {
     artist = truncate(artist, 19)
 
     const line = [
-      name.padEnd(31 + name.length - eaw.length(name)),
+      name.padEnd(31 + name.length - eaw.length(artist)),
       artist.padStart(20 + artist.length - eaw.length(artist)),
     ]
     lines.push(line.join(''))
