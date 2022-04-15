@@ -33,6 +33,7 @@ async function updateTopTracks(json) {
     return
   }
 
+  console.log('json',json)
   const tracks = json.items.map(item => ({
     name: item.name,
     artist: item.artists.map(artist => artist.name.trim()).join(' & '),
