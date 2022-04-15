@@ -36,6 +36,7 @@ async function updateTopTracks(json) {
 
   const lines = []
   for (let index = 0; index < Math.min(tracks.length, 10); index++) {
+    console.log('tracks', tracks[index])
     let { name, artist } = tracks[index]
     name = truncate(name, 25)
     artist = truncate(artist, 19)
