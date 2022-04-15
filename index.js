@@ -75,8 +75,8 @@ async function updateTopTracks(json) {
 }
 
 function generateBarChart(percent, size) {
-//   const syms = "░▏▎▍▌▋▊▉█";
-  const syms = "         ";
+  const syms = "░▏▎▍▌▋▊▉█";
+//   const syms = "         ";
 
   const frac = Math.floor((size * 8 * percent) / 100);
   const barsFull = Math.floor(frac / 8);
