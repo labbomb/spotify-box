@@ -47,7 +47,8 @@ async function updateTopTracks(json) {
 //     artist = truncate(artist, 19)
 
     const line = [
-      trimRightStr(name, 20).padEnd(10),
+      trimRightStr(name, 10).padEnd(10),
+      '',padEnd(14),
       generateBarChart(100, 15),
       artist.padStart(5)
 //       name.padEnd(31 + name.length - eaw.length(name)),
