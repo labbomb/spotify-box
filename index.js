@@ -16,6 +16,7 @@ async function main() {
 }
 
 function trimRightStr(str, len) {
+  console.log(str.length > len ? str.substring(0, len - 3) + "..." : str, str.length, len)
   // Ellipsis takes 3 positions, so the index of substring is 0 to total length - 3.
   return str.length > len ? str.substring(0, len - 3) + "..." : str;
 }
