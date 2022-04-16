@@ -1,6 +1,5 @@
 require('dotenv').config()
 
-const eaw = require('eastasianwidth')
 const { Octokit } = require('@octokit/rest')
 const { getTopTracks } = require('./spotify')
 
@@ -16,7 +15,6 @@ async function main() {
 }
 
 function trimRightStr(str, len) {
-  console.log(str.length > len ? str.substring(0, len - 3) + "..." : str, str.length, len)
   // Ellipsis takes 3 positions, so the index of substring is 0 to total length - 3.
   return str.length > len ? str.substring(0, len - 3) + "..." : str;
 }
@@ -34,7 +32,6 @@ async function updateTopTracks(json) {
     return
   }
 
-//   console.log('json',json)
   const tracks = json.items.map(item => ({
     name: item.name,
     artist: item.artists.map(artist => artist.name.trim()).join(' & '),
@@ -42,19 +39,14 @@ async function updateTopTracks(json) {
   if (!tracks.length) return
 
   const lines = []
-  for (let index = 0; index < Math.min(tracks.length, 5); index++) {
-    console.log('tracks', tracks[index])
+  for (let index = 0; index < Math.min(tracks.length, 10); index++) {
     let { name, artist } = tracks[index]
-//     name = truncate(name, 25)
-//     artist = truncate(artist, 19)
 
     const line = [
       trimRightStr(name, 10).padEnd(10),
       ' '.padEnd(14),
       generateBarChart(100, 15),
       artist.padStart(5)
-//       name.padEnd(31 + name.length - eaw.length(name)),
-//       artist.padStart(20 + artist.length - eaw.length(artist)),
     ]
     lines.push(line.join(''))
   }
@@ -78,8 +70,7 @@ async function updateTopTracks(json) {
 }
 
 function generateBarChart(percent, size) {
-  const syms = "░▏▎▍▌▋▊▉█";
-//   const syms = "         ";
+  const syms = "         ";
 
   const frac = Math.floor((size * 8 * percent) / 100);
   const barsFull = Math.floor(frac / 8);
@@ -91,16 +82,6 @@ function generateBarChart(percent, size) {
   return [syms.substring(8, 9).repeat(barsFull), syms.substring(semi, semi + 1)]
     .join("")
     .padEnd(size, syms.substring(0, 1));
-}
-
-function truncate(str, len) {
-  // string longer than `len`
-  for (let i = len - 2; i >= 0; i--) {
-    if (eaw.length(str) <= len) break
-    str = str.substring(0, i)
-  }
-
-  return str.trim()
 }
 
 ;(async () => {
