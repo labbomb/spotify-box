@@ -34,7 +34,7 @@ async function updateTopTracks(json) {
     return
   }
 
-  console.log('json',json)
+//   console.log('json',json)
   const tracks = json.items.map(item => ({
     name: item.name,
     artist: item.artists.map(artist => artist.name.trim()).join(' & '),
@@ -50,7 +50,7 @@ async function updateTopTracks(json) {
 
     const line = [
       trimRightStr(name, 10).padEnd(10),
-      ' ',padEnd(14),
+      ' '.padEnd(14),
       generateBarChart(100, 15),
       artist.padStart(5)
 //       name.padEnd(31 + name.length - eaw.length(name)),
