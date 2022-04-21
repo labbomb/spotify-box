@@ -9,11 +9,12 @@ jobs:
   updateTopTracks:
    runs-on: ubuntu-latest
    steps:
-     - uses: actions/checkout@v2
-     - run: npm install
-     - name: Update
-       uses: labbomb/spotify-box@main
-       env:
+      - uses: actions/checkout@master
+      - name: Install
+        run: npm ci
+      - name: Update
+        run: node ./index.js
+        env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GIST_ID: ${{ secrets.GIST_ID }}
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
