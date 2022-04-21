@@ -50,7 +50,7 @@ async function updateTopTracks(json) {
     ]
     lines.push(line.join(''))
   }
-
+  console.log('lines', lines)
   try {
     const filename = Object.keys(gist.data.files)[0]
     await octo.gists.update({
